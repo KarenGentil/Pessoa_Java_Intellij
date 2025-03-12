@@ -20,4 +20,9 @@ public class PessoaService {
         log.info("Pesquisando todas as pessoas");
         return pessoaRepository.findAll();
     }
+
+    public Pessoa findById(Long id) {
+        log.info("Pesquisando pessoa com ID: " + id);
+        return pessoaRepository.findById(id).orElseThrow();
+    }
 }

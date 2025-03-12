@@ -4,6 +4,7 @@ import br.com.casasbahia.app.model.Pessoa;
 import br.com.casasbahia.app.service.PessoaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,5 +20,10 @@ public class PessoaController {
     @GetMapping
     public List<Pessoa> findAll() {
         return pessoaService.findAll();
+    }
+
+    @GetMapping(value = "{id}")
+    public Pessoa findById(@PathVariable Long id) {
+        return pessoaService.findById(id);
     }
 }
