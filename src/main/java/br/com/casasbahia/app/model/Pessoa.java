@@ -27,7 +27,7 @@ public class Pessoa implements Serializable {
     private BigDecimal altura;
     @Column(nullable = true, name = "estado_civil", length = 10)
     private String estadoCivil;
-    @Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 50)
     private String cidade;
     @Column(nullable = false, length = 15)
     private String telefone;

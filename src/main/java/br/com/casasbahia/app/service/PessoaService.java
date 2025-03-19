@@ -25,4 +25,21 @@ public class PessoaService {
         log.info("Pesquisando pessoa com ID: " + id);
         return pessoaRepository.findById(id).orElseThrow();
     }
+
+    public Pessoa create(Pessoa pessoa) {
+        log.info("Criando Pessoa: " + pessoa.getNome());
+        return pessoaRepository.save(pessoa);
+    }
+
+    public Pessoa update(Pessoa pessoa) {
+        Pessoa pessoaAtual = findById(pessoa.getId());
+        pessoaAtual.setNome(pessoa.getNome());
+        pessoaAtual.setDataNascimento(pessoa.getDataNascimento());
+        pessoaAtual.setAltura(pessoa.getAltura());
+        pessoaAtual.setCidade(pessoa.getCidade());
+        pessoaAtual.setGenero(pessoa.getGenero());
+        pessoaAtual.setTelefone(pessoa.getTelefone());
+        log.info("Atualizando Pessoa: " + pessoaAtual.getNome());
+        return pessoaRepository.save(pessoaAtual);
+    }
 }
