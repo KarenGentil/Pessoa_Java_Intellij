@@ -2,6 +2,7 @@ package br.com.casasbahia.app.service;
 
 import br.com.casasbahia.app.model.Pessoa;
 import br.com.casasbahia.app.repository.PessoaRepository;
+import br.com.casasbahia.app.util.CalculoIdade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,9 @@ public class PessoaService {
     @Autowired
     PessoaRepository pessoaRepository;
 
+    @Autowired
+    CalculoIdade calculoIdade;
+
     public List<Pessoa> findAll() {
         log.info("Pesquisando todas as pessoas");
         return pessoaRepository.findAll();
@@ -27,6 +31,7 @@ public class PessoaService {
     }
 
     public Pessoa create(Pessoa pessoa) {
+        pessoa.setIdade(calculoIdade.calcularIdade(pessoa.getDataNascimento()));
         log.info("Criando Pessoa: " + pessoa.getNome());
         return pessoaRepository.save(pessoa);
     }
@@ -42,4 +47,11 @@ public class PessoaService {
         log.info("Atualizando Pessoa: " + pessoaAtual.getNome());
         return pessoaRepository.save(pessoaAtual);
     }
+
+    public void delete(Long id) {
+        log.info("Deletando Pessoa: " + id);
+        pessoaRepository.deleteById(id);
+    }
+
+
 }

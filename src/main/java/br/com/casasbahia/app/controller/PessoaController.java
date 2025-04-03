@@ -32,4 +32,9 @@ public class PessoaController {
     public Pessoa update(@RequestBody Pessoa pessoa) {
         return pessoaService.update(pessoa);
     }
+    @DeleteMapping(value = "{id}")
+    public void delete(@PathVariable Long id) {
+        pessoaService.delete(id);
+    }
+
 }
